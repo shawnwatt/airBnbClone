@@ -24,9 +24,7 @@ const SidebarOption = ({ title, Icon, addChannelOption, id }) => {
   };
 
   return (
-    <div
-      className="sidebarOption"
-      onClick={addChannelOption ? addChannel : selectChannel}>
+    <div className="sidebarOption" onClick={addChannel}>
       {Icon && <Icon className="sidebarOption__icon" />}
       {Icon ? (
         <h3>{title}</h3>
