@@ -10,21 +10,19 @@ function App() {
     <div className="app">
       <Router>
         <Header />
+
         <div className="app__body">
           <Sidebar />
+          <Switch>
+            <Route path="/room/:roomId">
+              <Chat />
+            </Route>
+            <Route path="/">
+              <h2>welcome to home screen</h2>
+            </Route>
+          </Switch>
         </div>
-        <Switch>
-          <Route path="/room/:roomId">
-            <Chat />
-          </Route>
-          <Route path="/">
-            <h2>welcome to home screen</h2>
-          </Route>
-        </Switch>
       </Router>
-
-      {/* sidebar */}
-      {/* React-Router -> chatscreen*/}
     </div>
   );
 }
