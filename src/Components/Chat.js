@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./Chat.css";
 import { useParams } from "react-router-dom";
-import { InfoOutlined,  StarBorderOutlined } from "@material-ui/icons";
+import { InfoOutlined, StarBorderOutlined } from "@material-ui/icons";
 import db from "../firebase";
 import Message from "./Message";
-
+import ChatInput from "./ChatInput";
 
 const Chat = () => {
   const { roomId } = useParams();
@@ -56,6 +56,8 @@ const Chat = () => {
           />
         ))}
       </div>
+
+      <ChatInput channelName={roomDetails?.name} channelId={roomId} />
     </div>
   );
 };
