@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Chat.css";
 import { useParams } from "react-router-dom";
-import { InfoOutlined, StarBorderOutlined } from "@material-ui/icons";
+import { InfoOutlined, Message, StarBorderOutlined } from "@material-ui/icons";
 import db from "../firebase";
 
 const Chat = () => {
   const { roomId } = useParams();
   const [roomDetails, setRoomDetails] = useState(null);
-  const [roomMessages, setRoomMessages] = useState(null);
+  const [roomMessages, setRoomMessages] = useState([]);
 
   useEffect(() => {
     if (roomId) {
@@ -20,10 +20,13 @@ const Chat = () => {
       .doc(roomId)
       .collection("messages")
       .orderBy("timestamp", "asc")
-      .onSnapshot( snapshot => setRoomMessages(snapshot.docs.map((doc) => doc.data())));
+      .onSnapshot((snapshot) =>
+        setRoomMessages(snapshot.docs.map((doc) => doc.data()))
+      );
   }, [roomId]);
 
   console.log(roomDetails);
+  console.log("message >>", roomMessages);
 
   return (
     <div className="chat">
@@ -39,6 +42,17 @@ const Chat = () => {
             <InfoOutlined /> Details
           </p>
         </div>
+      </div>
+
+      <div className="chat__messages">
+        {roomMessages.map(({ message, user, userImage, timestamp }) => (
+          <Message
+            message={message}
+            timestamp={timestamp}
+            user={user}
+            userImage={userImage}
+          />
+        ))}
       </div>
     </div>
   );
