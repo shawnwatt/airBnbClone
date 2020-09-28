@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./Chat.css";
 import { useParams } from "react-router-dom";
-import { InfoOutlined, Message, StarBorderOutlined } from "@material-ui/icons";
+import { InfoOutlined,  StarBorderOutlined } from "@material-ui/icons";
 import db from "../firebase";
+import Message from "./Message";
+
 
 const Chat = () => {
   const { roomId } = useParams();
